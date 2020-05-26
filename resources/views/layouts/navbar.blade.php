@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top-sm">
+<nav class="navbar navbar-expand-md fixed-top-sm nav-main">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Veganation') }}
@@ -8,7 +8,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="">Receitas</a>
@@ -18,9 +17,7 @@
                 </li>
             </ul>
 
-            <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
@@ -28,20 +25,8 @@
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('settings.recipes.index') }}">
-                            <img width="30" height="30" src="{{ Auth::user()->avatar }}" class="rounded-circle mr-2" alt="{{ Auth::user()->name }}">
-                            {{ Auth::user()->name }}
+                            <img width="30" height="30" src="{{ Auth::user()->avatar }}" class="rounded mr-2" alt="{{ Auth::user()->name }}">
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Sair') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
                     </li>
                 @endguest
             </ul>
@@ -61,6 +46,17 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('settings.recipes.favorites') }}">Receitas favoritas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Sair') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </li>
         </ul>
     </div>

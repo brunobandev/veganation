@@ -29,17 +29,14 @@
         </main>
 
         <footer>
-            <div class="container-fluid" style="background: #226146; color: #4cb88a;">
-                <div class="container text-center text-uppercase">
-                    <div class="d-flex justify-content-between">
-                        <div class=" text-left">
-                            Copyright © Veganation. Todos os direitos reservados.
-                        </div>
-                        <div class=" text-center">Feito com amor e respeito aos animais</div>
-                        <div class=" text-right">
-                            <a href="">Twitter</a>
-                            <a class="ml-2" href="">Facebook</a>
-                        </div>
+            <div class="container text-center">
+                <div class="d-flex justify-content-between">
+                    <div class=" text-left">
+                        2020 Copyright © Veganation. Todos os direitos reservados - Feito com <i class="fa fa-heart text-danger"></i> e respeito aos animais
+                    </div>
+                    <div class="text-right">
+                        <a href="https://twitter.com/veganationapp" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://facebook.com/veganationapp" target="_blank"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>
             </div>
