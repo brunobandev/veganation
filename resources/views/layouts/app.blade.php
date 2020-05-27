@@ -35,7 +35,6 @@
                         2020 Copyright © Veganation. Todos os direitos reservados - Feito com <i class="fa fa-heart text-danger"></i> e respeito aos animais
                     </div>
                     <div class="text-right">
-                        <a href="https://twitter.com/veganationapp" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://facebook.com/veganationapp" target="_blank"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>

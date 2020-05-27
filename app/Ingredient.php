@@ -18,4 +18,9 @@ class Ingredient extends Model
     {
         return $this->belongsTo(Recipe::class);
     }
+
+    public function measure()
+    {
+        return $this->belongsTo(Measure::class);
+    }
 }

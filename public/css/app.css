@@ -16975,6 +16975,38 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  /* Margin bottom by footer height */
+}
+
+/* only affix the top navbar on mobile */
+
+@media (max-width: 768px) {
+  .fixed-top-sm {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+  body {
+    padding-top: 44px;
+  }
+}
+
+.jumbotron {
+  background: url("https://images.purplecarrot.com/uploads/recipe/image/1840/_1400_700_Vegan_HerbSausageswithCarawayRoastedPotatoes_Horizontal-508e7342df334f4371b0e973ecec73d1.jpg") no-repeat center center;
+  background-size: cover;
+  min-height: 300px;
+}
+
 .nav-main {
   background: #555B6E;
 }
@@ -16988,28 +17020,36 @@ readers do not read off random characters that represent icons */
   color: #FAF9F9;
 }
 
+.nav-item {
+  font-size: 1.125rem;
+}
+
+.recipe-card .recipe-card-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8f9fa;
+  background: #555B6E;
+}
+
+.recipe-card .recipe-card-body a {
+  color: #619B85;
+}
+
+.recipe-card .recipe-card-body .recipe-card-description {
+  font-size: 1.1rem;
+  color: #555B6E;
+}
+
+.ingredients {
+  font-size: 1.1rem;
+}
+
+.steps {
+  font-size: 1.1rem;
+}
+
 .text-shadow {
   text-shadow: 1px 1px 1px #ffffff;
-}
-
-.nav-item {
-  font-size: 18px;
-}
-
-.jumbotron {
-  background: url("https://images.purplecarrot.com/uploads/recipe/image/1840/_1400_700_Vegan_HerbSausageswithCarawayRoastedPotatoes_Horizontal-508e7342df334f4371b0e973ecec73d1.jpg") no-repeat center center;
-  background-size: cover;
-  min-height: 400px;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-  /* Margin bottom by footer height */
 }
 
 footer {
@@ -17068,21 +17108,5 @@ section .category-item figure span {
   bottom: 10px;
   right: 10px;
   background: #555B6E;
-}
-
-/* only affix the top navbar on mobile */
-
-@media (max-width: 768px) {
-  .fixed-top-sm {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-  }
-
-  body {
-    padding-top: 44px;
-  }
 }
 

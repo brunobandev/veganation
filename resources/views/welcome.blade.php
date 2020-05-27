@@ -10,30 +10,37 @@
         <div class="row">
         @foreach($recipes as $recipe)
             <div class="col-md-6">
-                <div class="card border-0 mt-2">
-                    <div class="card-header">
+                <div class="card recipe-card border mt-2 shadow-sm">
+                    <div class="card-header border-0 recipe-card-header">
                         <div class="row">
-                            <div class="col-md-6">
-                                <a href="" class="btn btn-primary btn-sm">Compartilhar</a>
-                                <a href="" class="btn btn-primary btn-sm">Favoritar</a>
-                            </div>
-                            <div class="col-md-6 text-right">
+                            <div class="col-md-12 text-right">
+                                <span class="mr-2">{{ $recipe->user->name }}</span>
                                 <img height="30px" class="rounded" src="{{ $recipe->user->avatar }}" alt="{{ $recipe->user->name }}">
                             </div>
                         </div>
                     </div>
-                    <div class="card-body d-flex">
+                    <div class="card-body recipe-card-body d-flex">
                         <div>
                             <img height="150px" class="rounded" src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" alt="">
                         </div>
-                        <div class="w-100 pl-3 d-flex flex-column">
-                            <h4><a href="{{ route('recipes.show', $recipe) }}">{{ Str::limit($recipe->name, 24) }}</a></h4>
-                            <p>{{ $recipe->description }}</p>
+                        <div class="pl-3">
+                            <a class="h4" href="{{ route('recipes.show', $recipe) }}">{{ Str::limit($recipe->name, 28) }}</a>
+                            <p class="recipe-card-description m-0 pt-1">
+                                {{ Str::limit($recipe->description, 155) }}
+                            </p>
                         </div>
                     </div>
-                    <div class="card-footer bg-white">
-                        <div class="mt-auto d-inline-flex">
-                            <div class="d-inline-flex align-content-center">
+                    <div class="card-footer border-0">
+                        <div class="mt-auto d-flex justify-content-center">
+                            <div class="d-flex align-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                                    <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M2.5.625h16.25v18.75H2.5zM1.25 4.375h2.5M1.25 8.125h2.5M1.25 11.875h2.5M1.25 15.625h2.5" stroke-width="1.249995"/>
+                                        <path d="M6.875 7.188a1.875 2.188 0 103.75 0 1.875 2.188 0 10-3.75 0zM8.75 9.375v5M13.75 9.375v5M12.5 5v3.125a1.25 1.25 0 001.25 1.25h0A1.25 1.25 0 0015 8.125V5" stroke-width="1.249995"/>
+                                    </g>
+                                </svg>
+                                <span class="pl-2">{{ $recipe->category->name }}</span>
+                            </div>
+                            <div class="pl-3 d-inline-flex align-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
                                         <path d="M2.5 10.625a7.5 7.5 0 1015 0 7.5 7.5 0 10-15 0zM5 19.375l1.155-2.31M10 10.625H7.174M10 6.25v4.375M1.25 3.125l3.125-2.5M15 19.375l-1.155-2.31M18.75 3.125l-3.125-2.5" stroke-width="1.249995"/>
@@ -70,7 +77,7 @@
         <div class="row">
             @foreach($categories as $category)
             <div class="category-item col-md-3">
-                <a href="{{ route('recipes.categories', $category) }}">
+                <a href="{{ route('recipes.categories.show', $category) }}">
                     <figure>
                         <img src="http://localhost:8001/storage/recipe/7/thumb_159034843291.jpg" class="img-fluid rounded" alt="{{ $category->name }}">
                         <span class="py-1 px-2 font-semibold rounded h5">{{ $category->name }}</span>
@@ -84,54 +91,26 @@
     <section class="container">
         <h3 class="font-semibold with-line text-shadow my-5"><span>Mais delícias</span></h3>
         <div class="row">
+            @forelse($recipes as $recipe)
             <div class="col-md-4">
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3 shadow-sm recipe-card">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="http://localhost:8001/storage/recipe/8/thumb_159034690077.jpg" class="card-img" alt="...">
+                            <img src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" class="card-img" alt="{{ $category->name }}">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="card-body recipe-card-body">
+                                <a class="h5" href="{{ route('recipes.show', $recipe) }}">
+                                    {{ Str::limit($recipe->name, 55) }}
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="http://localhost:8001/storage/recipe/8/thumb_159034690077.jpg" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="http://localhost:8001/storage/recipe/8/thumb_159034690077.jpg" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @empty
+                Aguardando novas delícias.
+            @endforelse
         </div>
     </section>
 @endsection

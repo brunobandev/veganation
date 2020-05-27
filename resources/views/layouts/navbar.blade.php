@@ -13,7 +13,7 @@
                     <a class="nav-link" href="">Receitas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Categorias</a>
+                    <a class="nav-link" href="{{ route('recipes.categories') }}">Categorias</a>
                 </li>
             </ul>
 
