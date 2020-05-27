@@ -24,6 +24,13 @@ class RecipesController extends Controller
         $this->recipeRepository = $recipeRepository;
     }
 
+    public function index()
+    {
+        $recipes = $this->recipeRepository->all();
+
+        return view('recipes.index', compact('recipes'));
+    }
+
     public function show(int $id)
     {
         $recipe = $this->recipeRepository->find($id);

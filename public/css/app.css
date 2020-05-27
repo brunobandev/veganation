@@ -16985,6 +16985,18 @@ body {
   /* Margin bottom by footer height */
 }
 
+input {
+  font-size: 1.1rem !important;
+}
+
+textarea {
+  font-size: 1.1rem !important;
+}
+
+select {
+  font-size: 1.1rem !important;
+}
+
 /* only affix the top navbar on mobile */
 
 @media (max-width: 768px) {
@@ -17029,6 +17041,16 @@ body {
   font-weight: 600;
   color: #f8f9fa;
   background: #555B6E;
+}
+
+.recipe-card .recipe-card-header a {
+  color: #f8f9fa;
+}
+
+.recipe-card .recipe-card-header button {
+  color: #f8f9fa;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .recipe-card .recipe-card-body a {

@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="">Receitas</a>
+                    <a class="nav-link" href="{{ route('recipes.index') }}">Receitas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('recipes.categories') }}">Categorias</a>
@@ -44,14 +44,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('settings.recipes.create') }}">Criar receita</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('settings.recipes.favorites') }}">Receitas favoritas</a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" href="{{ route('settings.recipes.favorites') }}">Receitas favoritas</a>--}}
+{{--            </li>--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    {{ __('Sair') }}
+                    {{ __('Desconectar') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -1,15 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container pb-4">
     <div class="row">
         <div class="col-md-12">
             <form method="POST" action="{{ route('settings.recipes.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <h3 class="font-semibold">Adicionar uma nova receita</h3>
-                        <hr>
+                        <h3 class="font-semibold with-line text-shadow my-5"><span>Adicionar uma nova receita</span></h3>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -47,14 +46,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="portions" class="text-muted text-uppercase">Imagem</label>
+                            <label for="picture" class="text-muted text-uppercase">Imagem</label>
                             <input type="file" class="" name="picture" id="picture" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <hr>
-                        <h4 class="font-semibold">Adicionando ingredientes</h4>
-                        <hr>
+                        <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando ingredientes</span></h4>
                     </div>
 
                     <div class="col-md-12 mb-2">
@@ -94,9 +91,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <hr>
-                        <h4 class="font-semibold">Adicionando o passo-a-passo</h4>
-                        <hr>
+                        <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando o passo-a-passo</span></h4>
                     </div>
                     <div class="col-md-12" id="stepList">
                         <div class="form-group">

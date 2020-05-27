@@ -2,21 +2,18 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\EloquentRepositoryInterface;
+use App\Repositories\StepRepositoryInterface;
 use App\Step;
 
-class StepRepository extends BaseRepository implements EloquentRepositoryInterface
+class StepRepository extends BaseRepository implements StepRepositoryInterface
 {
     public function __construct(Step $model)
     {
         parent::__construct($model);
     }
 
-    public function createByRecipeId(int $recipeId, array $attributes): void
+    public function deleteByRecipeId(int $recipeId): void
     {
-        foreach ($attributes as $attribute) {
-            $attribute['recipe_id'] = $recipeId;
-            $this->create($attribute);
-        }
+        $this->model->whereRecipeId($recipeId)->delete();
     }
 }

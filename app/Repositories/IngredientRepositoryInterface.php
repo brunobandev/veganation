@@ -4,7 +4,10 @@
 namespace App\Repositories;
 
 
+use Illuminate\Database\Eloquent\Model;
+
 interface IngredientRepositoryInterface
 {
-    public function createByRecipeId(int $recipeId, array $attributes): void;
+    public function create(array $attributes): Model;
+    public function deleteByRecipeId(int $recipeId): void;
 }

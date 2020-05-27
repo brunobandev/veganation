@@ -7,6 +7,7 @@ use App\Repositories\IngredientRepositoryInterface;
 use App\Repositories\MeasureRepositoryInterface;
 use App\Repositories\RecipeRepositoryInterface;
 use App\Http\Controllers\Controller;
+use App\Repositories\StepRepositoryInterface;
 use App\Traits\Image;
 use Illuminate\Http\Request;
 
@@ -18,37 +19,30 @@ class RecipesController extends Controller
     protected $ingredientRepository;
     protected $measureRepository;
     protected $recipeRepository;
+    protected $stepRepository;
 
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
         IngredientRepositoryInterface $ingredientRepository,
         MeasureRepositoryInterface $measureRepository,
-        RecipeRepositoryInterface $recipeRepository
+        RecipeRepositoryInterface $recipeRepository,
+        StepRepositoryInterface $stepRepository
     )
     {
         $this->categoryRepository = $categoryRepository;
         $this->ingredientRepository = $ingredientRepository;
         $this->measureRepository = $measureRepository;
         $this->recipeRepository = $recipeRepository;
+        $this->stepRepository = $stepRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $recipes = $this->recipeRepository->all();
+        $recipes = $this->recipeRepository->findByUserId(auth()->id());
 
         return view('settings.recipes.index', compact('recipes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = $this->categoryRepository->all();
@@ -57,144 +51,70 @@ class RecipesController extends Controller
         return view('settings.recipes.create', compact('categories', 'measures'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $request->request->add(['user_id' => auth()->id()]);
-
-        $request->validate([
-            'user_id' => 'required',
-            'category_id' => 'required',
-            'name' => 'required|min:6',
-            'preparation_time' => 'required',
-            'portions' => 'required|integer'
-        ]);
+        $this->validateData($request);
 
         $recipe = $this->recipeRepository->create($request->all());
 
-        if ($request->hasfile('picture')) {
+        if ($request->hasFile('picture')) {
             $folder = "recipe/$recipe->id";
-            $filename = $this->uploadOne($request->file('picture'), $folder);
+            $path = storage_path("app/public/$folder");
+            $filename = $this->uploadOne($request->file('picture'), $path);
             $this->recipeRepository->update($recipe->id, ['picture' => $filename]);
         }
 
-        foreach ($request->steps as $key => $value) {
-            $recipe->steps()->create([
-                'description' => $value,
-                'order' => $request->steps_order[$key]
-            ]);
-        }
-
-        foreach ($request->ingredients as $key => $value) {
-            $recipe->ingredients()->create([
-                'name' => $value,
-                'quantity' => $request->ingredients_quantity[$key],
-                'measure_id' => $request->ingredients_measures_id[$key],
-                'order' => $request->ingredients_order[$key]
-            ]);
-        }
+        $this->createSteps($recipe, $request);
+        $this->createIngredients($recipe, $request);
 
         return redirect()->route('settings.recipes.index')
             ->with('message', 'Receita cadastrada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $recipe = $this->recipeRepository->find($id);
+        $this->authorize('edit-recipe', $recipe);
+
         $categories = $this->categoryRepository->all();
         $measures = $this->measureRepository->all();
 
         return view('settings.recipes.edit', compact('recipe', 'categories', 'measures'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $request->request->add(['user_id' => auth()->id()]);
+        $recipe = $this->recipeRepository->find($id);
+        $this->authorize('update-recipe', $recipe);
 
-        $request->validate([
-            'user_id' => 'required',
-            'category_id' => 'required',
-            'name' => 'required|min:6',
-            'preparation_time' => 'required',
-            'portions' => 'required|integer'
-        ]);
+        $this->validateData($request);
 
         $recipe = $this->recipeRepository->update($id, $request->all());
+        $this->ingredientRepository->deleteByRecipeId($recipe->id);
+        $this->stepRepository->deleteByRecipeId($recipe->id);
 
-        $recipe->ingredients()->delete();
-        $recipe->steps()->delete();
-
-        if ($request->hasfile('picture')) {
-
+        if ($request->hasFile('picture')) {
             $folder = "recipe/$recipe->id";
             $path = storage_path("app/public/$folder");
-
             $this->cleanDirectory($path);
-
             $filename = $this->uploadOne($request->file('picture'), $path);
             $this->recipeRepository->update($recipe->id, ['picture' => $filename]);
         }
 
-        foreach ($request->steps as $key => $value) {
-            $recipe->steps()->create([
-                'description' => $value,
-                'order' => $request->steps_order[$key]
-            ]);
-        }
-
-        foreach ($request->ingredients as $key => $value) {
-            $recipe->ingredients()->create([
-                'name' => $value,
-                'quantity' => $request->ingredients_quantity[$key],
-                'measure_id' => $request->ingredients_measures_id[$key],
-                'order' => $request->ingredients_order[$key]
-            ]);
-        }
+        $this->addSteps($recipe, $request);
+        $this->addIngredients($recipe, $request);
 
         return redirect()->route('settings.recipes.edit', $recipe)
             ->with('message', 'Receita alterada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $recipe = $this->recipeRepository->find($id);
-        $recipe->ingredients()->delete();
-        $recipe->steps()->delete();
+        $this->authorize('update-recipe', $recipe);
+
+        $this->ingredientRepository->deleteByRecipeId($recipe->id);
+        $this->stepRepository->deleteByRecipeId($recipe->id);
 
         $deleted = $this->recipeRepository->delete($recipe->id);
 
@@ -210,5 +130,45 @@ class RecipesController extends Controller
 
         return redirect()->route('settings.recipes.index')
             ->with('success', 'Receita removida com sucesso!');
+    }
+
+    private function addSteps($recipe, $request)
+    {
+        foreach ($request->steps as $key => $value) {
+            $step = [
+                'recipe_id' => $recipe->id,
+                'description' => $value,
+                'order' => $request->steps_order[$key]
+            ];
+
+            $this->stepRepository->create($step);
+        }
+    }
+
+    private function addIngredients($recipe, $request)
+    {
+        foreach ($request->ingredients as $key => $value) {
+            $ingredient = [
+                'recipe_id' => $recipe->id,
+                'name' => $value,
+                'quantity' => $request->ingredients_quantity[$key],
+                'measure_id' => $request->ingredients_measures_id[$key],
+                'order' => $request->ingredients_order[$key]
+            ];
+
+            $this->ingredientRepository->create($ingredient);
+        }
+    }
+
+    private function validateData(Request $request)
+    {
+        $request->validate([
+            'category_id' => 'required',
+            'name' => 'required|min:6',
+            'preparation_time' => 'required|integer',
+            'portions' => 'required|integer',
+            'ingredients.*' => 'min:3',
+            'steps.*' => 'min:3'
+        ]);
     }
 }

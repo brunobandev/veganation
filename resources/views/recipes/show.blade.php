@@ -4,12 +4,17 @@
 <div class="container mt-4 pb-4">
     <div class="row">
         <div class="col-md-12 text-right d-flex justify-content-between">
-            <div>
-                <button class="btn btn-outline-danger btn-sm text-uppercase">Esta receita não é vegana!</button>
+            <div class="d-flex">
+                <img height="30px" width="30px" class="rounded" src="{{ $recipe->user->avatar }}" alt="{{ $recipe->user->name }}">
+                <span class="pl-2 align-self-center font-semibold text-left" style="line-height: 14px;">
+                    <small>receita de</small><br> {{ $recipe->user->name }}
+                </span>
             </div>
+{{--                <button class="btn btn-outline-danger btn-sm text-uppercase">Esta receita não é vegana!</button>--}}
+
             <div>
                 <button class="btn btn-outline-success btn-sm text-uppercase">Compartilhar</button>
-                <button class="btn btn-outline-success btn-sm text-uppercase">Favoritar</button>
+{{--                <button class="btn btn-outline-success btn-sm text-uppercase">Favoritar</button>--}}
             </div>
         </div>
 
@@ -33,7 +38,7 @@
                             <path d="M2.5 10.625a7.5 7.5 0 1015 0 7.5 7.5 0 10-15 0zM5 19.375l1.155-2.31M10 10.625H7.174M10 6.25v4.375M1.25 3.125l3.125-2.5M15 19.375l-1.155-2.31M18.75 3.125l-3.125-2.5" stroke-width="1.249995"/>
                         </g>
                     </svg>
-                    <span class="pl-2">{{ $recipe->preparation_time }}</span>
+                    <span class="pl-2">{{ $recipe->preparation_time }} mins</span>
                 </div>
                 <div class="pl-3 d-inline-flex align-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -53,24 +58,12 @@
                 </div>
             </div>
 
-            <div class="recipe-card-body">
+            <div class="recipe-card-body w-100">
                 <hr>
                 <h1 class="h2 text-shadow">{{ $recipe->name }}</h1>
                 <p class="recipe-card-description">
                     {!! nl2br(e($recipe->description)) !!}
                 </p>
-            </div>
-
-            <div class="text-right mt-auto w-100">
-                <div class="row">
-                    <div class="col-md-12">
-                        <hr>
-                    </div>
-                </div>
-                <div class="pl-3 d-inline-flex">
-                    <span class="pr-2 align-self-center recipe-description">{{ $recipe->user->name }}</span>
-                    <img height="50px" width="50px" class="rounded" src="{{ $recipe->user->avatar }}" alt="{{ $recipe->user->name }}">
-                </div>
             </div>
         </div>
         <div class="col-md-6">
@@ -78,9 +71,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <hr>
-        </div>
         <div class="col-4 ingredients">
             <h4 class="font-semibold with-line text-shadow my-5"><span>Ingredientes</span></h4>
             <ul class="list-group list-group-flush">

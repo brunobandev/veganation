@@ -17,4 +17,9 @@ class RecipeRepository extends BaseRepository implements RecipeRepositoryInterfa
     {
         return $this->model->whereCategoryId($categoryId)->get();
     }
+
+    public function findByUserId(int $userId): Collection
+    {
+        return $this->model->whereUserId($userId)->get();
+    }
 }

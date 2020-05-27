@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container pb-4">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="font-semibold">Adicionar uma nova receita</h3>
-                <hr>
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-4" role="alert">
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}<br>
+                        @endforeach
+                    </div>
+                @endif
+                <h3 class="font-semibold with-line text-shadow my-5"><span>Editando receita</span></h3>
             </div>
             <div class="col-md-8">
                 <form method="POST" action="{{ route('settings.recipes.update', $recipe) }}" enctype="multipart/form-data">
@@ -34,28 +40,26 @@
                                 <textarea class="form-control" id="description" name="description" rows="3">{{ $recipe->description }}</textarea>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo</label>
                                 <input type="text" class="form-control" name="preparation_time" id="preparation_time" value="{{ $recipe->preparation_time }}" placeholder="">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="portions" class="text-muted text-uppercase">Porções</label>
                                 <input type="text" class="form-control" name="portions" id="portions" value="{{ $recipe->portions }}" placeholder="">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="portions" class="text-muted text-uppercase">Imagem</label>
                                 <input type="file" class="" name="picture" id="picture" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <hr>
-                            <h4 class="font-semibold">Adicionando ingredientes</h4>
-                            <hr>
+                            <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando ingredientes</span></h4>
                         </div>
 
                         <div class="col-md-12 mb-2">
@@ -97,9 +101,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <hr>
-                            <h4 class="font-semibold">Adicionando o passo-a-passo</h4>
-                            <hr>
+                            <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando o passo-a-passo</span></h4>
                         </div>
                         <div class="col-md-12" id="stepList">
                             @foreach($recipe->steps as $step)

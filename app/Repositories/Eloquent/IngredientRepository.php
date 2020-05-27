@@ -13,11 +13,8 @@ class IngredientRepository extends BaseRepository implements IngredientRepositor
         parent::__construct($model);
     }
 
-    public function createByRecipeId(int $recipeId, array $attributes): void
+    public function deleteByRecipeId(int $recipeId): void
     {
-        foreach ($attributes as $attribute) {
-            $attribute['recipe_id'] = $recipeId;
-            $this->create($attribute);
-        }
+        $this->model->whereRecipeId($recipeId)->delete();
     }
 }

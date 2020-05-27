@@ -21,6 +21,10 @@ body {
     margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
+input { font-size: 1.1rem !important; }
+textarea { font-size: 1.1rem !important; }
+select { font-size: 1.1rem !important; }
+
 /* only affix the top navbar on mobile */
 @media (max-width: 768px) {
     .fixed-top-sm {
@@ -64,6 +68,17 @@ body {
         font-weight: 600;
         color: #f8f9fa;
         background: #555B6E;
+
+        a {
+            color: #f8f9fa;
+        }
+
+        button {
+            color: #f8f9fa;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
     }
 
     .recipe-card-body {
