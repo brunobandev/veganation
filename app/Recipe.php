@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 class Recipe extends Model
 {
     protected $fillable = [
-        'id',
         'user_id',
         'category_id',
         'name',

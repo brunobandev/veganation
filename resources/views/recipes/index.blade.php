@@ -26,7 +26,9 @@
                     </div>
                 </div>
             @empty
-                Aguardando novas delícias.
+                <div class="col-md-12 font-weight-bolder">
+                    <p class="h4">Aguardando novas delícias.</p>
+                </div>
             @endforelse
         </div>
     </section>

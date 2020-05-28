@@ -4,6 +4,13 @@
 <div class="container pb-4">
     <div class="row">
         <div class="col-md-12">
+            @if ($errors->any())
+                <div class="alert alert-danger mt-4" role="alert">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}<br>
+                    @endforeach
+                </div>
+            @endif
             <form method="POST" action="{{ route('settings.recipes.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row justify-content-center">
@@ -126,12 +133,12 @@
             let inputs = duplicated.getElementsByTagName('input');
             for (let i = 0 ; i < inputs.length ; i++) {
                 // Clear text fields.
-                if (inputs[i].type == "text") {
+                if (inputs[i].type === "text") {
                     inputs[i].value = "";
                 }
 
                 // Create order.
-                if (inputs[i].type == "hidden") {
+                if (inputs[i].type === "hidden") {
                     inputs[i].value = parseInt(inputs[i].value) + 1;
                 }
             }

@@ -141,12 +141,12 @@
             let inputs = duplicated.getElementsByTagName('input');
             for (let i = 0 ; i < inputs.length ; i++) {
                 // Clear text fields.
-                if (inputs[i].type == "text") {
+                if (inputs[i].type === "text") {
                     inputs[i].value = "";
                 }
 
                 // Create order.
-                if (inputs[i].type == "hidden") {
+                if (inputs[i].type === "hidden") {
                     inputs[i].value = parseInt(inputs[i].value) + 1;
                 }
             }

@@ -8,7 +8,7 @@
     <section class="container mb-4">
         <h2 class="font-semibold with-line text-shadow my-5"><span>Últimas receitas</span></h2>
         <div class="row">
-        @foreach($recipes as $recipe)
+        @forelse($recipes as $recipe)
             <div class="col-md-6">
                 <div class="card recipe-card border mt-2 shadow-sm">
                     <div class="card-header border-0 recipe-card-header">
@@ -68,7 +68,11 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="col-md-12 font-weight-bolder">
+                <p class="h4">Aguardando receitas.</p>
+            </div>
+        @endforelse
         </div>
     </section>
 
@@ -109,7 +113,9 @@
                 </div>
             </div>
             @empty
-                Aguardando novas delícias.
+            <div class="col-md-12 font-weight-bolder">
+                <p class="h4">Aguardando novas delícias.</p>
+            </div>
             @endforelse
         </div>
     </section>

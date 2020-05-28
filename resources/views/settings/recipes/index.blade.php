@@ -13,7 +13,8 @@
                                 <div class="row">
                                     <div class="w-100 text-center col-md-12 d-flex justify-content-between">
                                         <div class="pl-2">
-                                            <form action="{{ route('settings.recipes.destroy', $recipe) }}" method="POST">
+                                            <form action="{{ route('settings.recipes.destroy', $recipe) }}" method="POST"
+                                                onsubmit="return confirm('Você tem certeza que deseja exlcuir essa receita?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-link p-0 m-0">Deletar</button>

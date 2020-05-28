@@ -6,10 +6,10 @@ use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\IngredientRepositoryInterface;
 use App\Repositories\MeasureRepositoryInterface;
 use App\Repositories\RecipeRepositoryInterface;
-use App\Http\Controllers\Controller;
 use App\Repositories\StepRepositoryInterface;
-use App\Traits\Image;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Traits\Image;
 
 class RecipesController extends Controller
 {
@@ -64,8 +64,8 @@ class RecipesController extends Controller
             $this->recipeRepository->update($recipe->id, ['picture' => $filename]);
         }
 
-        $this->createSteps($recipe, $request);
-        $this->createIngredients($recipe, $request);
+        $this->addSteps($recipe, $request);
+        $this->addIngredients($recipe, $request);
 
         return redirect()->route('settings.recipes.index')
             ->with('message', 'Receita cadastrada com sucesso!');

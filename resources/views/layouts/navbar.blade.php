@@ -20,7 +20,10 @@
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
+                        <a class="nav-link" href="{{ url('/auth/redirect/google') }}"><i class="fab fa-google"></i> Google</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/auth/redirect/facebook') }}"><i class="fab fa-facebook-f"></i> Facebook</a>
                     </li>
                 @else
                     <li class="nav-item">
