@@ -3,6 +3,8 @@
 namespace Tests\Feature\Settings;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\{
     User,

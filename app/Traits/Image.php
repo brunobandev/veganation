@@ -50,7 +50,7 @@ trait Image
         return File::cleanDirectory($dir);
     }
 
-    public function deleteDir($dir): bool
+    public function deleteDir($dir): int
     {
         if (! File::isDirectory($dir)) {
             return true;
