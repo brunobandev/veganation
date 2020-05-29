@@ -14,7 +14,9 @@ Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::namespace('Settings')->prefix('settings')->name('settings.')->middleware(['auth'])->group(function () {
-    Route::resource('categories', 'CategoriesController');
+    Route::middleware('is_admin')->group(function () {
+        Route::resource('categories', 'CategoriesController');
+    });
     Route::resource('recipes', 'RecipesController');
     Route::get('recipes/favorites', 'RecipesController@favorites')->name('recipes.favorites');
 });

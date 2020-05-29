@@ -14,8 +14,7 @@ class CategoriesController extends Controller
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
         RecipeRepositoryInterface $recipeRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->recipeRepository = $recipeRepository;
     }

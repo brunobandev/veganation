@@ -10,6 +10,7 @@ use App\Repositories\StepRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\Image;
+use App\Notifications\NewRecipePublished;
 
 class RecipesController extends Controller
 {
@@ -27,8 +28,7 @@ class RecipesController extends Controller
         MeasureRepositoryInterface $measureRepository,
         RecipeRepositoryInterface $recipeRepository,
         StepRepositoryInterface $stepRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->ingredientRepository = $ingredientRepository;
         $this->measureRepository = $measureRepository;
@@ -66,6 +66,12 @@ class RecipesController extends Controller
 
         $this->addSteps($recipe, $request);
         $this->addIngredients($recipe, $request);
+
+        if (env('APP_ENV') == 'production') {
+            $recipe->notify(new NewRecipePublished());
+        }
+
+        info($recipe);
 
         return redirect()->route('settings.recipes.index')
             ->with('message', 'Receita cadastrada com sucesso!');

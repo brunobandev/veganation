@@ -6,10 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
-use App\{
-    User,
-    Category
-};
+use App\User;
+use App\Category;
 
 class CategoriesController extends TestCase
 {
@@ -17,45 +15,47 @@ class CategoriesController extends TestCase
 
     public $user;
 
-    public function setUp(): void
+    private function createUser($is_admin = 0)
     {
-        parent::setUp();
-
         $this->user = factory(User::class)->create([
             'provider' => 'facebook',
-            'provider_id' => '09830293820'
+            'provider_id' => '09830293820',
+            'is_admin' => $is_admin
         ]);
     }
 
-    public function test_user_not_logged_cannot_see_settings_categories_page()
+    public function test_non_admin_cannot_see_settings_categories_page()
     {
-        $response = $this->get('/settings/categories');
-        $response->assertStatus(302);
-        $response->assertRedirect(route('home'));
+        $this->createUser();
+        $response = $this->actingAs($this->user)->get('/settings/categories');
+        $response->assertStatus(403);
     }
 
-    public function test_user_logged_can_see_settings_categories_page()
+    public function test_admin_can_see_settings_categories_page()
     {
+        $this->createUser(1);
         $response = $this->ActingAs($this->user)->get('/settings/categories');
         $response->assertStatus(200);
     }
 
-    public function test_user_not_logged_cannot_see_settings_categories_create_page()
+    public function test_non_admin_cannot_see_settings_categories_create_page()
     {
-        $response = $this->get('/settings/categories/create');
+        $this->createUser();
+        $response = $this->actingAs($this->user)->get('/settings/categories/create');
 
-        $response->assertStatus(302);
-        $response->assertRedirect(route('home'));
+        $response->assertStatus(403);
     }
 
-    public function test_user_logged_can_see_settings_categories_create_page()
+    public function test_admin_can_see_settings_categories_create_page()
     {
+        $this->createUser(1);
         $response = $this->ActingAs($this->user)->get('/settings/categories/create');
         $response->assertStatus(200);
     }
 
     public function test_store_category_exists_in_database()
     {
+        $this->createUser(1);
         $response = $this->ActingAs($this->user)->post('settings/categories', [
             'name' => 'Bebidas'
         ]);
@@ -69,6 +69,7 @@ class CategoriesController extends TestCase
 
     public function test_update_category_correct_validation_error()
     {
+        $this->createUser(1);
         $category = factory(Category::class)->create();
 
         $response = $this->actingAs($this->user)->put('/settings/categories/' . $category->id, [
@@ -81,6 +82,7 @@ class CategoriesController extends TestCase
 
     public function test_update_category_correct()
     {
+        $this->createUser(1);
         $category = factory(Category::class)->create();
 
         $response = $this->actingAs($this->user)->put('/settings/categories/' . $category->id, [
@@ -93,6 +95,7 @@ class CategoriesController extends TestCase
 
     public function test_delete_category_no_longer_exists_in_database()
     {
+        $this->createUser(1);
         $category = factory(Category::class)->create();
 
         $this->assertEquals(1, Category::count());

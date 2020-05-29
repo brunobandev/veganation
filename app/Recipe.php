@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 
 class Recipe extends Model
 {
+    use Notifiable;
+
     protected $fillable = [
         'user_id',
         'category_id',

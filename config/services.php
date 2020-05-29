@@ -42,4 +42,10 @@ return [
         'redirect' => env('APP_URL') . '/callback/facebook',
     ],
 
+    'facebook_poster' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'access_token' => env('FACEBOOK_ACCESS_TOKEN'),
+    ],
+
 ];

@@ -12,19 +12,19 @@ class MeasureSeeder extends Seeder
     public function run()
     {
         DB::table('measures')->insert([
-            'name' => 'Unidade',
+            'name' => 'unidade',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         DB::table('measures')->insert([
-            'name' => 'Colher de sopa',
+            'name' => 'colher de sopa',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         DB::table('measures')->insert([
-            'name' => 'Colher de chá',
+            'name' => 'colher de chá',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
@@ -36,19 +36,19 @@ class MeasureSeeder extends Seeder
         ]);
 
         DB::table('measures')->insert([
-            'name' => 'ML',
+            'name' => 'ml',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         DB::table('measures')->insert([
-            'name' => 'Pitada',
+            'name' => 'pitada',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         DB::table('measures')->insert([
-            'name' => 'A gosto',
+            'name' => 'a gosto',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);

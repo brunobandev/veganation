@@ -19,11 +19,10 @@ class HomeController extends Controller
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
-        RecipeRepositoryInterface $recipeRepository)
-    {
+        RecipeRepositoryInterface $recipeRepository
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->recipeRepository = $recipeRepository;
-//        $this->middleware('auth');
     }
 
     /**

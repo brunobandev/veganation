@@ -17,8 +17,7 @@ class RecipesController extends Controller
         CategoryRepositoryInterface $categoryRepository,
         MeasureRepositoryInterface $measureRepository,
         RecipeRepositoryInterface $recipeRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->measureRepository = $measureRepository;
         $this->recipeRepository = $recipeRepository;

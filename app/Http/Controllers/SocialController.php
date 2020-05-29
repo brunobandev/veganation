@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Validator,Redirect,Response,File;
+use Validator;
+use Redirect;
+use Response;
+use File;
 use Socialite;
 use Carbon\Carbon;
 use App\User;
@@ -21,18 +24,16 @@ class SocialController extends Controller
     {
         $getInfo = Socialite::driver($provider)->stateless()->user();
 
-        $user = $this->createUser($getInfo,$provider);
+        $user = $this->createUser($getInfo, $provider);
 
         auth()->login($user);
 
         return redirect()->to('/');
-
     }
 
-    function createUser($getInfo,$provider){
-
+    public function createUser($getInfo, $provider)
+    {
         $user = User::where('email', $getInfo->email)->first();
-
         if (!$user) {
             $user = User::create([
                 'name' => $getInfo->name,
@@ -44,6 +45,7 @@ class SocialController extends Controller
                 'password' => Hash::make(Str::random(10)),
             ]);
         }
+
         return $user;
     }
 }
