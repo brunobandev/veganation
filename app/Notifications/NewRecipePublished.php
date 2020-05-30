@@ -31,6 +31,6 @@ class NewRecipePublished extends Notification
     public function toFacebookPoster($recipe)
     {
         return (new FacebookPosterPost($recipe->name))
-            ->withLink(env('APP_URL') . "recipes/$recipe->id");
+            ->withLink(url('recipes/{$recipe->id}'));
     }
 }
