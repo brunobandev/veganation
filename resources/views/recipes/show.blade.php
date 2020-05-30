@@ -3,7 +3,7 @@
 @section('facebook')
 <meta property="og:url" content="{{ url('recipes') }}/{{ $recipe->id }}" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="{{ $recipe->name }}" />
+<meta property="og:title" content="{{ $recipe->name }} postado por {{ $recipe->user->name }}" />
 <meta property="og:description" content="{{ $recipe->description }}" />
 <meta property="og:image" content="{{ asset("storage/recipe/$recipe->id/$recipe->picture") }}" />
 @endsection
