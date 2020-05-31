@@ -13,7 +13,10 @@
                 <div class="card recipe-card border mt-2 shadow-sm">
                     <div class="card-header border-0 recipe-card-header">
                         <div class="row">
-                            <div class="col-md-12 text-right">
+                            <div class="col-md-6 text-left">
+                                {{ $recipe->category->name }}
+                            </div>
+                            <div class="col-md-6 text-right">
                                 <span class="mr-2">{{ $recipe->user->name }}</span>
                                 <img height="30px" class="rounded" src="{{ $recipe->user->avatar }}" alt="{{ $recipe->user->name }}">
                             </div>
@@ -32,14 +35,6 @@
                     </div>
                     <div class="card-footer border-0">
                         <div class="mt-auto d-flex justify-content-center">
-                            <div class="d-flex align-content-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M2.5.625h16.25v18.75H2.5zM1.25 4.375h2.5M1.25 8.125h2.5M1.25 11.875h2.5M1.25 15.625h2.5" stroke-width="1.249995"/>
-                                        <path d="M6.875 7.188a1.875 2.188 0 103.75 0 1.875 2.188 0 10-3.75 0zM8.75 9.375v5M13.75 9.375v5M12.5 5v3.125a1.25 1.25 0 001.25 1.25h0A1.25 1.25 0 0015 8.125V5" stroke-width="1.249995"/>
-                                    </g>
-                                </svg>
-                                <span class="pl-2">{{ $recipe->category->name }}</span>
-                            </div>
                             <div class="pl-3 d-inline-flex align-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">

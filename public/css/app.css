@@ -17037,9 +17037,8 @@ select {
 
 .recipe-card .recipe-card-header {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: #f8f9fa;
-  background: #555B6E;
+  color: #69eba9;
+  background: #44926a;
 }
 
 .recipe-card .recipe-card-header a {
@@ -17053,7 +17052,7 @@ select {
 }
 
 .recipe-card .recipe-card-body a {
-  color: #619B85;
+  color: #44926a;
 }
 
 .recipe-card .recipe-card-body .recipe-card-description {
@@ -17079,18 +17078,18 @@ footer {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-color: #619B85;
-  color: #555B6E;
+  background-color: #44926a;
+  color: #5fc290;
   font-size: 16px;
 }
 
 footer a {
-  color: #555B6E;
-  font-size: 20px;
+  color: #5fc290;
+  font-size: 16px;
 }
 
-footer a :hover {
-  color: #4cb88a;
+footer a:hover {
+  color: #FAF9F9;
 }
 
 .font-semibold {
