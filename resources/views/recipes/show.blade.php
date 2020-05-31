@@ -18,11 +18,9 @@
                     <small>receita de</small><br> {{ $recipe->user->name }}
                 </span>
             </div>
-{{--                <button class="btn btn-outline-danger btn-sm text-uppercase">Esta receita não é vegana!</button>--}}
 
             <div>
-                <button class="btn btn-outline-success btn-sm text-uppercase">Compartilhar</button>
-{{--                <button class="btn btn-outline-success btn-sm text-uppercase">Favoritar</button>--}}
+                <div class="fb-like" data-href="{{ url('recipes/' . $recipe->id) }}" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
             </div>
         </div>
 
