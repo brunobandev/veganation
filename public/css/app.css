@@ -17092,6 +17092,10 @@ footer a:hover {
   color: #FAF9F9;
 }
 
+.navbar-toggler {
+  background: #5fc290 !important;
+}
+
 .font-semibold {
   font-weight: 600;
 }

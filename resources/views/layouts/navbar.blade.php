@@ -4,7 +4,9 @@
             <img src="{{ asset('images/veganation.png') }}" alt="Veganation">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M2.813 22.504h24.375M2.813 15.004h24.375M2.813 7.504h24.375" stroke-width="1.875"/></g></svg>
+            </span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
