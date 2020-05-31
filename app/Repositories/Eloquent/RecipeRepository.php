@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Recipe;
 use App\Repositories\RecipeRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class RecipeRepository extends BaseRepository implements RecipeRepositoryInterface
@@ -21,5 +22,10 @@ class RecipeRepository extends BaseRepository implements RecipeRepositoryInterfa
     public function findByUserId(int $userId): Collection
     {
         return $this->model->whereUserId($userId)->get();
+    }
+
+    public function findBySlug(string $slug): ?Model
+    {
+        return $this->model->whereSlug($slug)->first();
     }
 }

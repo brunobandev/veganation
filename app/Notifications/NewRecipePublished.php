@@ -3,8 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\FacebookPoster\FacebookPosterChannel;
 use NotificationChannels\FacebookPoster\FacebookPosterPost;
@@ -31,6 +29,6 @@ class NewRecipePublished extends Notification
     public function toFacebookPoster($recipe)
     {
         return (new FacebookPosterPost($recipe->name))
-            ->withLink(url('recipes/' . $recipe->id));
+            ->withLink(url('recipes/' . $recipe->slug));
     }
 }

@@ -9,7 +9,7 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::get('/recipes/categories', 'CategoriesController@index')->name('recipes.categories');
 Route::get('/recipes/categories/{category}', 'CategoriesController@show')->name('recipes.categories.show');
-Route::get('/recipes/{id}', 'RecipesController@show')->name('recipes.show');
+Route::get('/recipes/{slug}', 'RecipesController@show')->name('recipes.show');
 Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
 Route::get('/', 'HomeController@index')->name('home');
 

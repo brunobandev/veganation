@@ -24,7 +24,7 @@
                             <img height="150px" class="rounded" src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" alt="">
                         </div>
                         <div class="pl-3">
-                            <a class="h4" href="{{ route('recipes.show', $recipe) }}">{{ Str::limit($recipe->name, 28) }}</a>
+                            <a class="h4" href="{{ route('recipes.show', $recipe->slug) }}">{{ Str::limit($recipe->name, 28) }}</a>
                             <p class="recipe-card-description m-0 pt-1">
                                 {{ Str::limit($recipe->description, 155) }}
                             </p>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body recipe-card-body">
-                                <a class="h5" href="{{ route('recipes.show', $recipe) }}">
+                                <a class="h5" href="{{ route('recipes.show', $recipe->slug) }}">
                                     {{ Str::limit($recipe->name, 55) }}
                                 </a>
                             </div>

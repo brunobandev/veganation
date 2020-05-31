@@ -17,7 +17,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body recipe-card-body">
-                                    <a class="h5" href="{{ route('recipes.show', $recipe) }}">
+                                    <a class="h5" href="{{ route('recipes.show', $recipe->slug) }}">
                                         {{ Str::limit($recipe->name, 55) }}
                                     </a>
                                 </div>
