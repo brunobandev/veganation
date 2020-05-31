@@ -87,7 +87,7 @@
         </div>
     </section>
 
-    <section class="container">
+    <section class="container pb-5">
         <h3 class="font-semibold with-line text-shadow my-5"><span>Mais delícias</span></h3>
         <div class="row">
             @forelse($recipes as $recipe)
