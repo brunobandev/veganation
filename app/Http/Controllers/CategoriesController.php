@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\RecipeRepositoryInterface;
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -26,9 +25,9 @@ class CategoriesController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function show(int $id)
+    public function show($slug)
     {
-        $category = $this->categoryRepository->find($id);
+        $category = $this->categoryRepository->findBySlug($slug);
         $recipes = $this->recipeRepository->findByCategoryId($category->id);
 
         return view('categories.show', compact('category', 'recipes'));

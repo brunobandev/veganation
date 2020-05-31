@@ -25,7 +25,7 @@
                                                 <a href="{{ route('settings.recipes.edit', $recipe) }}">Editar</a>
                                             </div>
                                             <div class="pl-2">
-                                                <a href="{{ route('recipes.show', $recipe) }}" target="_blank">Visualizar</a>
+                                                <a href="{{ route('recipes.show', $recipe->slug) }}" target="_blank">Visualizar</a>
                                             </div>
                                         </div>
                                     </div>
