@@ -31,7 +31,7 @@ class RecipesController extends Controller
 
     public function show($slug)
     {
-        $recipe = $this->recipeRepository->findBySlug($id);
+        $recipe = $this->recipeRepository->findBySlug($slug);
 
         return view('recipes.show', compact('recipe'));
     }
