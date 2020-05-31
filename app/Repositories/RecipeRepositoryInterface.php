@@ -9,6 +9,10 @@ interface RecipeRepositoryInterface
 {
     public function all(): Collection;
 
+    public function latest(int $take): Collection;
+
+    public function beforeLatest(int $take, int $skip): Collection;
+
     public function find(int $id): ?Model;
 
     public function findByCategoryId(int $categoryId): Collection;

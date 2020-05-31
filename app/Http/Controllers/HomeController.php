@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepositoryInterface;
-use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\RecipeRepositoryInterface;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -33,8 +31,9 @@ class HomeController extends Controller
     public function index()
     {
         $categories = $this->categoryRepository->all();
-        $recipes = $this->recipeRepository->all();
+        $latest = $this->recipeRepository->latest(2);
+        $recipes = $this->recipeRepository->beforeLatest(12, 2);
 
-        return view('welcome', compact('recipes', 'categories'));
+        return view('welcome', compact('recipes', 'latest', 'categories'));
     }
 }

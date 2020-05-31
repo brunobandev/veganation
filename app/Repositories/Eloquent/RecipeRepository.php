@@ -14,6 +14,16 @@ class RecipeRepository extends BaseRepository implements RecipeRepositoryInterfa
         parent::__construct($model);
     }
 
+    public function latest(int $take): Collection
+    {
+        return $this->model->take($take)->get();
+    }
+
+    public function beforeLatest(int $take, int $skip): Collection
+    {
+        return $this->model->skip($skip)->take($take)->get();
+    }
+
     public function findByCategoryId(int $categoryId): Collection
     {
         return $this->model->whereCategoryId($categoryId)->get();

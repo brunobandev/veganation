@@ -8,7 +8,7 @@
     <section class="container mb-4">
         <h2 class="font-semibold with-line text-shadow my-5"><span>Últimas receitas</span></h2>
         <div class="row">
-        @forelse($recipes as $recipe)
+        @forelse($latest as $recipe)
             <div class="col-md-6">
                 <div class="card recipe-card border mt-2 shadow-sm">
                     <div class="card-header border-0 recipe-card-header">
