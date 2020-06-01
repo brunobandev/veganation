@@ -14,7 +14,7 @@ class AddSlugToRecipesTable extends Migration
     public function up()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->string('slug')->unique()->after('name');
+            $table->string('slug')->unique()->nullable()->after('name');
         });
     }
 

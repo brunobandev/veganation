@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
+    @if (env('APP_ENV') != 'local')
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168132250-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -10,6 +11,7 @@
 
         gtag('config', 'UA-168132250-1');
     </script>
+    @endif
 
     <meta charset="utf-8">
     <meta name="description" content="Site de receitas da comunidade vegana">

@@ -14,7 +14,7 @@ class AddSlugToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug')->unique()->after('name');
+            $table->string('slug')->unique()->nullable()->after('name');
         });
     }
 
