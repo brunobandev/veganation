@@ -14,7 +14,7 @@ class ChangeTypeQuantityColumnOnIngredientsTable extends Migration
     public function up()
     {
         Schema::table('ingredients', function (Blueprint $table) {
-            //
+            $table->string('quantity')->change();
         });
     }
 
@@ -26,7 +26,6 @@ class ChangeTypeQuantityColumnOnIngredientsTable extends Migration
     public function down()
     {
         Schema::table('ingredients', function (Blueprint $table) {
-            $table->string('quantity')->change();
         });
     }
 }
