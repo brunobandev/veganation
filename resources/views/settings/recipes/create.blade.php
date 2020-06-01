@@ -43,12 +43,14 @@
                         <div class="form-group">
                             <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo</label>
                             <input type="text" class="form-control" name="preparation_time" id="preparation_time" placeholder="">
+                            <small class="text-danger">Colocar somente números, tempo em minutos!</small>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="portions" class="text-muted text-uppercase">Porções</label>
                             <input type="text" class="form-control" name="portions" id="portions" placeholder="">
+                            <small class="text-danger">Colocar somente números, quantidade de porções!</small>
                         </div>
                     </div>
                     <div class="col-md-4">

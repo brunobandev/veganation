@@ -40,8 +40,7 @@
 </nav>
 @if (auth()->check())
 <nav class="navbar navbar-expand-md bg-light navbar-light">
-    <div class="container navbar-collapse collapse d-flex">
-
+    <div class="container navbar-collapse collapse d-flex" id="navbar2">
         <ul class="navbar-nav mx-auto justify-content-center">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('settings.recipes.index') }}">Minhas receitas</a>
@@ -49,9 +48,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('settings.recipes.create') }}">Criar receita</a>
             </li>
-{{--            <li class="nav-item">--}}
-{{--                <a class="nav-link" href="{{ route('settings.recipes.favorites') }}">Receitas favoritas</a>--}}
-{{--            </li>--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                    onclick="event.preventDefault();

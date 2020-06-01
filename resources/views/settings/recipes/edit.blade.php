@@ -40,19 +40,21 @@
                                 <textarea class="form-control" id="description" name="description" rows="3">{{ $recipe->description }}</textarea>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo</label>
                                 <input type="text" class="form-control" name="preparation_time" id="preparation_time" value="{{ $recipe->preparation_time }}" placeholder="">
+                                <small class="text-danger">Colocar somente números, tempo em minutos!</small>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="portions" class="text-muted text-uppercase">Porções</label>
                                 <input type="text" class="form-control" name="portions" id="portions" value="{{ $recipe->portions }}" placeholder="">
+                                <small class="text-danger">Colocar somente números, quantidade de porções!</small>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="portions" class="text-muted text-uppercase">Imagem</label>
                                 <input type="file" class="" name="picture" id="picture" placeholder="">
