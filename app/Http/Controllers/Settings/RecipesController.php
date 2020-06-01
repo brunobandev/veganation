@@ -46,7 +46,7 @@ class RecipesController extends Controller
     public function create()
     {
         $categories = $this->categoryRepository->all();
-        $measures = $this->measureRepository->all();
+        $measures = $this->measureRepository->all()->sortBy('name');
 
         return view('settings.recipes.create', compact('categories', 'measures'));
     }
@@ -83,7 +83,7 @@ class RecipesController extends Controller
         $this->authorize('edit-recipe', $recipe);
 
         $categories = $this->categoryRepository->all();
-        $measures = $this->measureRepository->all();
+        $measures = $this->measureRepository->all()->sortBy('name');
 
         return view('settings.recipes.edit', compact('recipe', 'categories', 'measures'));
     }
@@ -124,13 +124,13 @@ class RecipesController extends Controller
 
         $deleted = $this->recipeRepository->delete($recipe->id);
 
-        if (! $deleted) {
+        if (!$deleted) {
             throw new \Exception('Fail to delete');
         }
 
         $path = storage_path("app/public/recipe/$id");
 
-        if (! $this->deleteDir($path)) {
+        if (!$this->deleteDir($path)) {
             throw new \Exception('Fail to remove directory');
         }
 
