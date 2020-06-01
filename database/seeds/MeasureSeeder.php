@@ -42,7 +42,7 @@ class MeasureSeeder extends Seeder
         ]);
 
         DB::table('measures')->insert([
-            'name' => 'xícara(ss) de chá',
+            'name' => 'xícara(s) de chá',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);

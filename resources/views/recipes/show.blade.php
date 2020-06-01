@@ -72,7 +72,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-center">
             <img class="img-fluid rounded img-thumbnail" src="{{ asset("storage/recipe/$recipe->id/$recipe->picture") }}" alt="{{ $recipe->name }}">
         </div>
     </div>
