@@ -4,6 +4,7 @@
     <div class="container pb-4">
         <div class="row">
             <div class="col-md-12">
+                @include('layouts.alerts')
                 @if ($errors->any())
                     <div class="alert alert-danger mt-4" role="alert">
                         @foreach ($errors->all() as $error)

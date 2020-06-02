@@ -111,7 +111,7 @@ class RecipesController extends Controller
         $this->addIngredients($recipe, $request);
 
         return redirect()->route('settings.recipes.edit', $recipe)
-            ->with('message', 'Receita alterada com sucesso!');
+            ->with('success', 'Receita alterada com sucesso!');
     }
 
     public function destroy($id)

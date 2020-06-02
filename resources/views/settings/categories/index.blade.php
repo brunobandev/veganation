@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+          @include('layouts.alerts')
             <h3 class="font-semibold with-line text-shadow my-5"><span>Categorias</span></h3>
             <div class="row">
                 <div class="col-md-12">
