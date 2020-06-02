@@ -24,7 +24,7 @@ class RecipesController extends Controller
 
     public function index()
     {
-        $recipes = $this->recipeRepository->all();
+        $recipes = $this->recipeRepository->all()->sortByDesc('created_at');
 
         return view('recipes.index', compact('recipes'));
     }

@@ -26,12 +26,12 @@ class RecipeRepository extends BaseRepository implements RecipeRepositoryInterfa
 
     public function findByCategoryId(int $categoryId): Collection
     {
-        return $this->model->whereCategoryId($categoryId)->get();
+        return $this->model->whereCategoryId($categoryId)->orderBy('created_at', 'desc')->get();
     }
 
     public function findByUserId(int $userId): Collection
     {
-        return $this->model->whereUserId($userId)->get();
+        return $this->model->whereUserId($userId)->orderBy('created_at', 'desc')->get();
     }
 
     public function findBySlug(string $slug): ?Model
