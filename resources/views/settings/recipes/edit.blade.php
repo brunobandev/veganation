@@ -15,7 +15,7 @@
                 <h3 class="font-semibold with-line text-shadow my-5"><span>Editando receita</span></h3>
             </div>
             <div class="col-md-12">
-                <form method="POST" action="{{ route('settings.recipes.update', $recipe) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('settings.recipes.update', $recipe) }}" id="" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="row justify-content-center">
@@ -120,7 +120,7 @@
                         <div class="col-md-12" id="stepList">
                             @foreach($recipe->steps as $step)
                             <div class="form-group">
-                                <input type="text" class="form-control" name="steps[]" id="steps" placeholder="Descreva o próximo passo" value="{{ $step->description }}">
+                                <input type="text" class="form-control" name="steps[]" placeholder="Descreva o próximo passo" value="{{ $step->description }}">
                                 <input type="hidden" name="steps_order[]" value="{{ $step->order }}">
                             </div>
                             @endforeach
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-md-12 text-right">
                             <hr>
-                            <button type="submit" class="btn btn-success text-uppercase font-weight-bold">Alterar receita</button>
+                            <button type="submit" id="updateRecipe" class="btn btn-success text-uppercase font-weight-bold">Alterar receita</button>
                         </div>
                     </div>
                 </form>
@@ -142,9 +142,32 @@
 
 @section('scripts')
     <script>
+        window.onload = function () {
+            document.getElementById('updateRecipe').addEventListener('click', function (event) {
+                let steps = document.getElementsByName('steps[]');
+                if (steps.length > 1) {
+                    for (let i = 0; i < steps.length; i++) {
+                        if (steps[i].value === '') {
+                            steps[i].classList.add('is-invalid');
+                            event.preventDefault();
+                        }
+                    }
+                }
 
-        function duplicate(target)
-        {
+                let ingredients = document.getElementsByName('ingredients[]');
+                if (ingredients.length > 1) {
+                    for (let i = 0; i < ingredients.length; i++) {
+                        if (ingredients[i].value === '') {
+                            ingredients[i].classList.add('is-invalid');
+                            event.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
+
+        function duplicate(target) {
+
             let node = document.getElementById(target);
             let element = node.lastChild;
             let duplicated = element.cloneNode(true);
@@ -154,6 +177,7 @@
                 // Clear text fields.
                 if (inputs[i].type === "text") {
                     inputs[i].value = "";
+                    inputs[i].classList.remove('is-invalid');
                 }
 
                 // Create order.
@@ -164,8 +188,8 @@
             node.appendChild(duplicated);
         }
 
-        function remove(target)
-        {
+        function remove(target) {
+
             let node = document.getElementById(target);
             if (node.childElementCount === 1) {
                 return;

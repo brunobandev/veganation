@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-md-12 text-right">
                         <hr>
-                        <button type="submit" class="btn btn-success text-uppercase font-weight-bold">Criar receita</button>
+                        <button type="submit" id="updateRecipe" class="btn btn-success text-uppercase font-weight-bold">Criar receita</button>
                     </div>
                 </div>
             </form>
@@ -129,6 +129,29 @@
 
 @section('scripts')
     <script>
+        window.onload = function () {
+            document.getElementById('updateRecipe').addEventListener('click', function (event) {
+                let steps = document.getElementsByName('steps[]');
+                if (steps.length > 0) {
+                    for (let i = 0; i < steps.length; i++) {
+                        if (steps[i].value === '') {
+                            steps[i].classList.add('is-invalid');
+                            event.preventDefault();
+                        }
+                    }
+                }
+
+                let ingredients = document.getElementsByName('ingredients[]');
+                if (ingredients.length > 0) {
+                    for (let i = 0; i < ingredients.length; i++) {
+                        if (ingredients[i].value === '') {
+                            ingredients[i].classList.add('is-invalid');
+                            event.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
 
         function duplicate(target)
         {
@@ -141,6 +164,7 @@
                 // Clear text fields.
                 if (inputs[i].type === "text") {
                     inputs[i].value = "";
+                    inputs[i].classList.remove('is-invalid');
                 }
 
                 // Create order.
