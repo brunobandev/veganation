@@ -132,7 +132,7 @@
         window.onload = function () {
             document.getElementById('updateRecipe').addEventListener('click', function (event) {
                 let steps = document.getElementsByName('steps[]');
-                if (steps.length > 0) {
+                if (steps.length > 1) {
                     for (let i = 0; i < steps.length; i++) {
                         if (steps[i].value === '') {
                             steps[i].classList.add('is-invalid');
@@ -142,7 +142,7 @@
                 }
 
                 let ingredients = document.getElementsByName('ingredients[]');
-                if (ingredients.length > 0) {
+                if (ingredients.length > 1) {
                     for (let i = 0; i < ingredients.length; i++) {
                         if (ingredients[i].value === '') {
                             ingredients[i].classList.add('is-invalid');
