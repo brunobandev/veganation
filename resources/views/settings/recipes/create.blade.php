@@ -20,16 +20,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name" class="text-muted text-uppercase">Nome da receita</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="">
+                            <label for="name" class="text-muted text-uppercase">Nome da receita <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="category" class="text-muted text-uppercase">Categoria</label>
+                            <label for="category" class="text-muted text-uppercase">Categoria <span class="text-danger">*</span></label>
                             <select class="form-control custom-select" name="category_id" id="category">
                                 @foreach($categories as $caterory)
-                                    <option value="{{ $caterory->id }}">{{ $caterory->name }}</option>
+                                    <option value="{{ $caterory->id }}" {{ old('category_id') ? 'selected' : '' }}>{{ $caterory->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,21 +37,21 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="description" class="text-muted text-uppercase">Descrição</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description') }}</textarea>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo</label>
-                            <input type="text" class="form-control" name="preparation_time" id="preparation_time" placeholder="">
-                            <small class="text-danger">Colocar somente números, tempo em minutos!</small>
+                            <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="preparation_time" id="preparation_time" placeholder="" value="{{ old('preparation_time') }}">
+                            <small class="text-grey">Colocar somente números, tempo em minutos!</small>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="portions" class="text-muted text-uppercase">Porções</label>
-                            <input type="text" class="form-control" name="portions" id="portions" placeholder="">
-                            <small class="text-danger">Colocar somente números, quantidade de porções!</small>
+                            <label for="portions" class="text-muted text-uppercase">Porções <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="portions" id="portions" placeholder="" value="{{ old('portions') }}">
+                            <small class="text-grey">Colocar somente números, quantidade de porções!</small>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,7 +73,7 @@
                                 <p class="m-0 text-muted text-uppercase">Unidade de medida</p>
                             </div>
                             <div class="col-md-7">
-                                <p class="m-0 text-muted text-uppercase">Ingrediente</p>
+                                <p class="m-0 text-muted text-uppercase">Ingrediente <span class="text-danger">*</span></p>
                             </div>
                         </div>
                     </div>
@@ -102,6 +102,9 @@
 
                     <div class="col-md-12">
                         <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando o passo-a-passo</span></h4>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <p class="m-0 text-muted text-uppercase">Descrição <span class="text-danger">*</span></p>
                     </div>
                     <div class="col-md-12" id="stepList">
                         <div class="form-group">

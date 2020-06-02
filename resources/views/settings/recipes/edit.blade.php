@@ -14,53 +14,61 @@
                 @endif
                 <h3 class="font-semibold with-line text-shadow my-5"><span>Editando receita</span></h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <form method="POST" action="{{ route('settings.recipes.update', $recipe) }}" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name" class="text-muted text-uppercase">Nome da receita</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{ $recipe->name }}" placeholder="">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name" class="text-muted text-uppercase">Nome da receita <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="name" id="name" value="{{ $recipe->name }}" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="category" class="text-muted text-uppercase">Categoria <span class="text-danger">*</span></label>
+                                        <select class="form-control custom-select" name="category_id" id="category">
+                                            @foreach($categories as $caterory)
+                                                <option value="{{ $caterory->id }}" {{ ($recipe->category_id == $caterory->id) ? 'selected' : '' }}>{{ $caterory->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="description" class="text-muted text-uppercase">Descrição</label>
+                                        <textarea class="form-control" id="description" name="description" rows="3">{{ $recipe->description }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="preparation_time" id="preparation_time" value="{{ $recipe->preparation_time }}" placeholder="">
+                                        <small class="text-grey">Colocar somente números, tempo em minutos!</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="portions" class="text-muted text-uppercase">Porções <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="portions" id="portions" value="{{ $recipe->portions }}" placeholder="">
+                                        <small class="text-grey">Colocar somente números, quantidade de porções!</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="portions" class="text-muted text-uppercase">Imagem</label>
+                                        <input type="file" class="" name="picture" id="picture" placeholder="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="category" class="text-muted text-uppercase">Categoria</label>
-                                <select class="form-control custom-select" name="category_id" id="category">
-                                    @foreach($categories as $caterory)
-                                        <option value="{{ $caterory->id }}" {{ ($recipe->category_id == $caterory->id) ? 'selected' : '' }}>{{ $caterory->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        <div class="col-md-4 text-center">
+                            <img class="img-thumbnail rounded" src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" alt="">
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description" class="text-muted text-uppercase">Descrição</label>
-                                <textarea class="form-control" id="description" name="description" rows="3">{{ $recipe->description }}</textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="preparation_time" class="text-muted text-uppercase">Tempo de preparo</label>
-                                <input type="text" class="form-control" name="preparation_time" id="preparation_time" value="{{ $recipe->preparation_time }}" placeholder="">
-                                <small class="text-danger">Colocar somente números, tempo em minutos!</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="portions" class="text-muted text-uppercase">Porções</label>
-                                <input type="text" class="form-control" name="portions" id="portions" value="{{ $recipe->portions }}" placeholder="">
-                                <small class="text-danger">Colocar somente números, quantidade de porções!</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="portions" class="text-muted text-uppercase">Imagem</label>
-                                <input type="file" class="" name="picture" id="picture" placeholder="">
-                            </div>
-                        </div>
+
                         <div class="col-md-12">
                             <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando ingredientes</span></h4>
                         </div>
@@ -74,7 +82,7 @@
                                     <p class="m-0 text-muted text-uppercase">Unidade de medida</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p class="m-0 text-muted text-uppercase">Ingrediente</p>
+                                    <p class="m-0 text-muted text-uppercase">Ingrediente <span class="text-danger">*</span></p>
                                 </div>
                             </div>
                         </div>
@@ -106,6 +114,9 @@
                         <div class="col-md-12">
                             <h4 class="font-semibold with-line text-shadow my-5"><span>Adicionando o passo-a-passo</span></h4>
                         </div>
+                        <div class="col-md-12 mb-2">
+                            <p class="m-0 text-muted text-uppercase">Descrição <span class="text-danger">*</span></p>
+                        </div>
                         <div class="col-md-12" id="stepList">
                             @foreach($recipe->steps as $step)
                             <div class="form-group">
@@ -124,9 +135,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="col-md-4 text-center">
-                <img class="img-thumbnail rounded" src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" alt="">
             </div>
         </div>
     </div>

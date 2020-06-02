@@ -53,8 +53,7 @@ class RecipesController extends Controller
 
     public function store(Request $request)
     {
-        $this->validateData($request);
-
+        $this->validate($request, $this->rules());
         $recipe = $this->recipeRepository->create($request->all());
 
         if ($request->hasFile('picture')) {
@@ -74,7 +73,7 @@ class RecipesController extends Controller
         info($recipe);
 
         return redirect()->route('settings.recipes.index')
-            ->with('message', 'Receita cadastrada com sucesso!');
+            ->with('success', 'Receita cadastrada com sucesso!');
     }
 
     public function edit($id)
@@ -93,7 +92,7 @@ class RecipesController extends Controller
         $recipe = $this->recipeRepository->find($id);
         $this->authorize('update-recipe', $recipe);
 
-        $this->validateData($request);
+        $this->validate($request, $this->rules());
 
         $recipe = $this->recipeRepository->update($id, $request->all());
         $this->ingredientRepository->deleteByRecipeId($recipe->id);
@@ -166,15 +165,15 @@ class RecipesController extends Controller
         }
     }
 
-    private function validateData(Request $request)
+    private function rules()
     {
-        $request->validate([
+        return [
             'category_id' => 'required',
             'name' => 'required|min:6',
             'preparation_time' => 'required|integer',
             'portions' => 'required|integer',
             'ingredients.*' => 'min:3',
             'steps.*' => 'min:3'
-        ]);
+        ];
     }
 }

@@ -46,7 +46,8 @@ class CategoriesController extends Controller
             $this->categoryRepository->update($category->id, ['picture' => $filename]);
         }
 
-        return redirect()->route('settings.categories.index');
+        return redirect()->route('settings.categories.index')
+          ->with('success', 'Categoria cadastrada com sucesso!');
     }
 
     public function edit(int $id)
@@ -74,7 +75,8 @@ class CategoriesController extends Controller
             $this->categoryRepository->update($category->id, ['picture' => $filename]);
         }
 
-        return redirect()->route('settings.categories.index');
+        return redirect()->route('settings.categories.index')
+          ->with('success', 'Categoria alterada com sucesso!');;
     }
 
     public function destroy(int $id)
