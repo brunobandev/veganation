@@ -16,12 +16,12 @@ class RecipeRepository extends BaseRepository implements RecipeRepositoryInterfa
 
     public function latest(int $take): Collection
     {
-        return $this->model->take($take)->get();
+        return $this->model->take($take)->orderBy('created_at', 'desc')->get();
     }
 
     public function beforeLatest(int $take, int $skip): Collection
     {
-        return $this->model->skip($skip)->take($take)->get();
+        return $this->model->skip($skip)->take($take)->orderBy('created_at', 'desc')->get();
     }
 
     public function findByCategoryId(int $categoryId): Collection
