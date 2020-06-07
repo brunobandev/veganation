@@ -3,6 +3,7 @@
 namespace Tests\Feature\Settings;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 use App\User;
 use App\Category;
@@ -55,7 +56,8 @@ class CategoriesController extends TestCase
     {
         $this->createUser(1);
         $response = $this->ActingAs($this->user)->post('settings/categories', [
-            'name' => 'Bebidas'
+            'name' => 'Bebidas',
+            'slug' => Str::slug('bebidas'),
         ]);
 
         $this->assertDatabaseHas('categories', ['name' => 'Bebidas']);

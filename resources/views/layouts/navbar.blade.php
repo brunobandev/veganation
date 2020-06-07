@@ -21,11 +21,12 @@
 
             <ul class="navbar-nav ml-auto">
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/auth/redirect/google') }}"><i class="fab fa-google"></i> Google</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/auth/redirect/facebook') }}"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <li class="nav-item d-flex flex-column">
+                        <span class="small text-uppercase text-center font-weight-bold" style="font-size: 10px; color: #ffffff;">Entrar com</span>
+                        <div class="d-flex justify-content-center">
+                            <a class="nav-link" href="{{ url('/auth/redirect/google') }}"><i class="fab fa-google"></i> Google</a>
+                            <a class="nav-link pl-2" href="{{ url('/auth/redirect/facebook') }}"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        </div>
                     </li>
                 @else
                     <li class="nav-item">

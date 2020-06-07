@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\CategoryRepositoryInterface;
-use App\Category;
 use App\Traits\Image;
 
 class CategoriesController extends Controller
