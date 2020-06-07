@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-4 ingredients">
+        <div class="col-md-4 col-sm-4 ingredients">
             <h4 class="font-semibold with-line text-shadow my-5"><span>Ingredientes</span></h4>
             <ul class="list-group list-group-flush">
                 @forelse($recipe->ingredients as $ingredient)
@@ -87,7 +87,7 @@
                 @endforelse
             </ul>
         </div>
-        <div class="col-8 steps">
+        <div class="col-md-8 col-sm-8 steps">
             <h4 class="font-semibold with-line text-shadow my-5"><span>Modo de preparo</span></h4>
             <ul class="list-group list-group-flush">
                 @forelse($recipe->steps as $step)
