@@ -9,14 +9,14 @@
         <h3 class="font-semibold with-line text-shadow my-5"><span>Categoria: <strong>{{ $category->name }}</strong></span></h3>
         <div class="row">
             @forelse($recipes as $recipe)
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                     <div class="card recipe-card border mt-2 shadow-sm">
                         <div class="card-header border-0 recipe-card-header">
                             <div class="row">
                                 <div class="col-md-6 text-left">
                                     <a href="{{ route('recipes.categories.show', $recipe->category->slug) }}">{{ $recipe->category->name }}</a>
                                 </div>
-                                <div class="col-md-6 text-right">
+                                <div class="col-md-6 text-right d-none d-lg-block">
                                     <span class="mr-2">{{ $recipe->user->name }}</span>
                                     <img height="30px" class="rounded" src="{{ $recipe->user->avatar }}" alt="{{ $recipe->user->name }}">
                                 </div>
@@ -28,12 +28,12 @@
                             </div>
                             <div class="pl-3">
                                 <a class="h4" href="{{ route('recipes.show', $recipe->slug) }}">{{ Str::limit($recipe->name, 28) }}</a>
-                                <p class="recipe-card-description m-0 pt-1">
+                                <p class="recipe-card-description m-0 pt-1 d-none d-lg-block">
                                     {{ Str::limit($recipe->description, 155) }}
                                 </p>
                             </div>
                         </div>
-                        <div class="card-footer border-0">
+                        <div class="card-footer border-0 d-none d-lg-block">
                             <div class="mt-auto d-flex justify-content-center">
                                 <div class="pl-3 d-inline-flex align-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">

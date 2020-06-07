@@ -38,12 +38,12 @@
                                 </div>
                                 <div class="pl-3">
                                     <a class="h4" href="{{ route('recipes.show', $recipe->slug) }}" target="_blank">{{ Str::limit($recipe->name, 28) }}</a>
-                                    <p class="recipe-card-description m-0 pt-1">
+                                    <p class="recipe-card-description m-0 pt-1 d-none d-lg-block">
                                         {{ Str::limit($recipe->description, 155) }}
                                     </p>
                                 </div>
                             </div>
-                            <div class="card-footer border-0">
+                            <div class="card-footer border-0 d-none d-lg-block">
                                 <div class="mt-auto d-flex justify-content-center">
                                     <div class="d-flex align-content-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
