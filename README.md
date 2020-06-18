@@ -23,33 +23,33 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Clone
 ```bash
-$ git clone git@github.com:brunobandev/veganation.git`
-$ cd veganation`
+$ git clone git@github.com:brunobandev/veganation.git
+$ cd veganation
 ```
 
-### Create a environment file
+### Create an environment file
 ```bash
-$ cp .env.example .env`
+$ cp .env.example .env
 ```
 
 ### Create an application key
 ```bash
-$ docker exec veganation-app php artisan key:generate`
+$ docker exec veganation-app php artisan key:generate
 ```
 
 ### Containers start
 ```bash
-$ docker-compose up`
+$ docker-compose up
 ```
 
 ### Install dependencies
 ```bash
-$ docker exec veganation-app composer install`
+$ docker exec veganation-app composer install
 ```
 
 ### Create tables on database
 ```bash
-$ docker exec veganation-app php artisan migrate`
+$ docker exec veganation-app php artisan migrate
 ```
 
 ### Run tests
