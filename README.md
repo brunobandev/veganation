@@ -12,24 +12,17 @@ The project was created to demystify a question. But what eats a vegetarian/vega
 Other ideas are coming up, and we have a lot to grow together. Follow the project! :)
 
 ## Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker composer](https://docs.docker.com/compose/install/)
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-And repeat
-
-
-End with an example of getting some data out of the system or using it for a little demo.
+WIP
 
 ## Usage <a name = "usage"></a>
 
-Add notes about how to use the system.
+WIP
