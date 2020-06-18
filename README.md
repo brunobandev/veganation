@@ -1,4 +1,4 @@
-# Project Title
+# Veganation
 
 ## Table of Contents
 + [About](#about)
@@ -7,7 +7,9 @@
 + [Contributing](./CONTRIBUTING.md)
 
 ## About <a name = "about"></a>
-Write about 1-2 paragraphs describing the purpose of your project.
+The project was created to demystify a question. But what eats a vegetarian/vegan? And with that, to stimulate the sharing of vegan recipes by the community.
+
+Other ideas are coming up, and we have a lot to grow together. Follow the project! :)
 
 ## Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
