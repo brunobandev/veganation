@@ -2,7 +2,7 @@
 
 First fork this project.  
 
-* git clone <your-forked-repo>
+* git clone < your-forked-repo >
 * follow the [instructions](./README.md#getting_started) to install the project
 
 * git checkout -b my-fix
