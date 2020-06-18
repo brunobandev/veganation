@@ -21,8 +21,45 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-WIP
+### Clone
+```bash
+$ git clone git@github.com:brunobandev/veganation.git`
+$ cd veganation`
+```
+
+### Create a environment file
+```bash
+$ cp .env.example .env`
+```
+
+### Create an application key
+```bash
+$ docker exec veganation-app php artisan key:generate`
+```
+
+### Containers start
+```bash
+$ docker-compose up`
+```
+
+### Install dependencies
+```bash
+$ docker exec veganation-app composer install`
+```
+
+### Create tables on database
+```bash
+$ docker exec veganation-app php artisan migrate`
+```
+
+### Run tests
+```bash
+$ docker exec veganation-app ./vendor/bin/phpunit
+```
 
 ## Usage <a name = "usage"></a>
 
-WIP
+### Open your favorite browser and text:
+```bash
+http://localhost:80828
+```

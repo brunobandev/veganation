@@ -1,19 +1,55 @@
-version: "3"
-
+version: "3.7"
 services:
-  php:
-    image: ambientum/php:7.3-nginx
-    ports:
-      - 80:8080
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./docker/php
+      dockerfile: Dockerfile
+    image: veganation
+    container_name: veganation-app
+    restart: unless-stopped
+    working_dir: /var/www/
     volumes:
-      - .:/var/www/app
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - veganation
 
-  mysql:
+  db:
     image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: "123456"
-      MYSQL_DATABASE: "veganation"
+    container_name: veganation-db
+    restart: unless-stopped
     ports:
-      - "3306:3306"
+      - 33061:3306
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
     volumes:
-      - /var/lib/mysql:/var/lib/mysql
+      - dbdata:/var/lib/mysql/
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - veganation
+
+  nginx:
+    image: nginx:alpine
+    container_name: veganation-nginx
+    restart: unless-stopped
+    ports:
+      - 8082:80
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - veganation
+
+networks:
+  veganation:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
