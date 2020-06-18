@@ -13,7 +13,11 @@
                     <div class="card mb-3 shadow-sm recipe-card">
                         <div class="row no-gutters">
                             <div class="col-md-4">
+                                @if ($recipe->picture)
                                 <img src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" class="card-img" alt="{{ $recipe->name }}">
+                                @else
+                                <img src="{{ asset("images/placeholder.png") }}" class="card-img" alt="{{ $recipe->name }}">
+                                @endif
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body recipe-card-body">

@@ -73,7 +73,11 @@
             </div>
         </div>
         <div class="col-md-6 text-center">
+            @if ($recipe->picture)
             <img class="img-fluid rounded img-thumbnail" src="{{ asset("storage/recipe/$recipe->id/$recipe->picture") }}" alt="{{ $recipe->name }}">
+            @else
+            <img class="img-fluid rounded img-thumbnail" src="{{ asset("images/placeholder.png") }}" alt="{{ $recipe->name }}">
+            @endif
         </div>
     </div>
     <div class="row">
