@@ -2,8 +2,8 @@
 
 First fork this project.  
 
-* git clone git@github.com:brunobandev/veganation.git
-* npm install
+* git clone <your-forked-repo>
+* follow the [instructions](./README.md#getting_started) to install the project
 
 * git checkout -b my-fix
 
