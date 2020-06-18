@@ -1,5 +1,6 @@
 <?php
 
+use App\Recipe;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,7 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(MeasureSeeder::class);
-        $this->call(CategorySeeder::class);
+        $this->call([
+            UserSeeder::class,
+            MeasureSeeder::class,
+            CategorySeeder::class,
+            RecipeSeeder::class,
+        ]);
     }
 }

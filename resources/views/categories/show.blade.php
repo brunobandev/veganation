@@ -24,7 +24,11 @@
                         </div>
                         <div class="card-body recipe-card-body d-flex">
                             <div>
+                                @if ($recipe->picture)
                                 <img height="150px" class="rounded" src="{{ asset("storage/recipe/$recipe->id/thumb_$recipe->picture") }}" alt="">
+                                @else
+                                <img height="150px" class="rounded" src="{{ asset("images/placeholder.png") }}" alt="">
+                                @endif
                             </div>
                             <div class="pl-3">
                                 <a class="h4" href="{{ route('recipes.show', $recipe->slug) }}">{{ Str::limit($recipe->name, 28) }}</a>
