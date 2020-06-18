@@ -61,5 +61,5 @@ $ docker exec veganation-app ./vendor/bin/phpunit
 
 ### Open your favorite browser and text:
 ```bash
-http://localhost:80828
+http://localhost:8082
 ```
